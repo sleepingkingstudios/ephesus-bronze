@@ -26,3 +26,7 @@ gem 'patina',
 gem 'zinke', git: 'https://github.com/sleepingkingstudios/zinke'
 
 component :core
+
+group :development, :test do
+  gem 'byebug', '~> 9.0', '~> 9.0.5'
+end
