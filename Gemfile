@@ -13,15 +13,11 @@ def component(name)
   end
 end
 
-gem 'bronze',
-  git: 'https://github.com/sleepingkingstudios/bronze',
-  branch: 'chore/update-cuprum'
+gem 'bronze', git: 'https://github.com/sleepingkingstudios/bronze'
 
 gem 'cuprum', git: 'https://github.com/sleepingkingstudios/cuprum'
 
-gem 'patina',
-  git: 'https://github.com/sleepingkingstudios/bronze',
-  branch: 'chore/update-cuprum'
+gem 'patina', git: 'https://github.com/sleepingkingstudios/bronze'
 
 gem 'zinke', git: 'https://github.com/sleepingkingstudios/zinke'
 
