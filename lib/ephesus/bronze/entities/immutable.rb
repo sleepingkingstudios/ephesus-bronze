@@ -23,11 +23,17 @@ module Ephesus::Bronze::Entities
       value = send(name)
 
       return nil if value.nil?
-      return Hamster::Hash.new(value.attributes) unless value.respond_to?(:each)
+      return entity_to_immutable(value) unless value.respond_to?(:each)
 
       Hamster::Vector.new(
-        value.map { |entity| Hamster::Hash.new(entity.attributes) }
+        value.map { |entity| entity_to_immutable(entity) }
       )
+    end
+
+    def entity_to_immutable(entity)
+      return entity.to_immutable if entity.respond_to?(:to_immutable)
+
+      Hamster::Hash.new(entity.attributes)
     end
   end
 end

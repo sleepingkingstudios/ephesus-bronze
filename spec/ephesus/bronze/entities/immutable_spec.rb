@@ -44,14 +44,14 @@ RSpec.describe Ephesus::Bronze::Entities::Immutable do
         klass.references_one :object,
           class_name: 'Spec::ExampleEntity',
           inverse:    :material
+
+        klass.send :define_method, :to_immutable do
+          super().merge(metal: metal.upcase)
+        end
       end
 
       example_class 'Spec::ManyChildrenEntity', Bronze::Entities::Entity \
       do |klass|
-        # rubocop:disable RSpec/DescribedClass
-        klass.send :include, Ephesus::Bronze::Entities::Immutable
-        # rubocop:enable RSpec/DescribedClass
-
         klass.attribute :type, String
 
         klass.references_one :object,
@@ -185,7 +185,7 @@ RSpec.describe Ephesus::Bronze::Entities::Immutable do
               material: Hamster::Hash.new(
                 id:        material.id,
                 object_id: instance.id,
-                metal:     material.metal
+                metal:     material.metal.upcase
               )
             )
           end
@@ -234,7 +234,7 @@ RSpec.describe Ephesus::Bronze::Entities::Immutable do
               material: Hamster::Hash.new(
                 id:        material.id,
                 object_id: instance.id,
-                metal:     material.metal
+                metal:     material.metal.upcase
               )
             )
           end
@@ -330,7 +330,7 @@ RSpec.describe Ephesus::Bronze::Entities::Immutable do
               material:  Hamster::Hash.new(
                 id:        material.id,
                 object_id: instance.id,
-                metal:     material.metal
+                metal:     material.metal.upcase
               ),
               parent:    Hamster::Hash.new(
                 id:   parent.id,
